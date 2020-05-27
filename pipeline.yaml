@@ -1,0 +1,39 @@
+---
+resources:
+- name: source-code
+  type: git
+  source:
+    uri: https://github.com/gevorg-tonoyan-rft/gevorg-test.git
+    branch: master
+    username: ((kv/rft/github-access-token))
+    password: x-oauth-basic
+jobs:
+  - name: job
+    public: true
+    plan:
+      - get: source-code
+        trigger: true
+      - task: simple-task
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source: { repository: busybox }
+          run:
+            path: echo
+            args: ["Hello, world!"]
+            
+  - name: any name
+    public: true
+    plan:
+      - get: source-code
+        trigger: true
+      - task: simple-task
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source: { repository: debian }
+          run:
+            path: echo
+            args: ["Hello, Allan!"]
