@@ -8,11 +8,18 @@ resources:
     username: ((kv/rft/github-access-token))
     password: x-oauth-basic
 jobs:
+  - name: first-job
+    plan: 
+      - get: source-code
+        trigger: true
+      - set_pipeline: sdp-ecr
+        file: source-code/pipeline.yaml
   - name: job
     public: true
     plan:
       - get: source-code
         trigger: true
+        passed: [first-job]
       - task: simple-task
         config:
           platform: linux
@@ -28,6 +35,7 @@ jobs:
     plan:
       - get: source-code
         trigger: true
+        passed: [job]
       - task: simple-task
         config:
           platform: linux
