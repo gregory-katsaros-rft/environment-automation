@@ -12,7 +12,7 @@ jobs:
     plan: 
       - get: source-code
         trigger: true
-      - set_pipeline: sdp-ecr
+      - set_pipeline: gevorg-test
         file: source-code/pipeline.yaml
   - name: job
     public: true
