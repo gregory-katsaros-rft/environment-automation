@@ -29,19 +29,3 @@ jobs:
           run:
             path: echo
             args: ["Hello, world!"]
-            
-  - name: any name
-    public: true
-    plan:
-      - get: source-code
-        trigger: true
-        passed: [job]
-      - task: simple-task
-        config:
-          platform: linux
-          image_resource:
-            type: registry-image
-            source: { repository: debian }
-          run:
-            path: echo
-            args: ["You shall not pass!"]
