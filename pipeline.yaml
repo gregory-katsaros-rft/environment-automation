@@ -3,7 +3,7 @@ resources:
 - name: source-code
   type: git
   source:
-    uri: https://github.com/gevorg-tonoyan-rft/gevorg-test.git
+    uri: https://github.com/gregory-katsaros-rft/environment-automation.git
     branch: master
     username: ((kv/rft/github-access-token))
     password: x-oauth-basic
@@ -12,7 +12,7 @@ jobs:
     plan: 
       - get: source-code
         trigger: true
-      - set_pipeline: gevorg-test
+      - set_pipeline: greg-automation-test
         file: source-code/pipeline.yaml
   - name: job
     public: true
