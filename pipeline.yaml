@@ -24,18 +24,13 @@ jobs:
         trigger: true
       - set_pipeline: greg-automation-test
         file: source-code/pipeline.yaml
+      - task: dummy-task
+        file: pipeline-source/tasks/dummy-task.yml
   - name: job
     public: true
     plan:
       - get: environment-request
         trigger: true
         passed: [first-job]
-      - task: simple-task
-        config:
-          platform: linux
-          image_resource:
-            type: registry-image
-            source: { repository: busybox }
-          run:
-            path: echo
-            args: ["Hello, world!"]
+      - task: dummy-task
+        file: pipeline-source/tasks/dummy-task.yml
