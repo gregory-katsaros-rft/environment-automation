@@ -17,6 +17,10 @@ resources:
     branch: master
     username: ((kv/rft/github-access-token))
     password: x-oauth-basic
+
+- name: request-keyval
+  type: keyval
+
 jobs:
   - name: first-job
     plan: 
@@ -24,12 +28,12 @@ jobs:
         trigger: true
       - get: environment-request
         trigger: true
-        file: pipeline-source/pipeline.yaml
       - task: dummy-task
         file: pipeline-source/tasks/dummy-task.yml
+      - put: request-keyval
   - name: other-job
     plan:
-      - get: environment-request
+      - get: request-keyval
         trigger: true
         passed: [first-job]
       - task: dummy-task
