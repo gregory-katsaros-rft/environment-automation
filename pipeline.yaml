@@ -5,7 +5,7 @@ resources:
     icon: github-circle
     source:
       uri: https://github.com/gregory-katsaros-rft/environment-automation.git
-      branch: master
+      branch: develop
       username: ((kv/rft/github-access-token))
       password: x-oauth-basic
 
