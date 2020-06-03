@@ -1,20 +1,20 @@
 ---
 resources:
 - name: pipeline-source
-    type: git
-    icon: github-circle
-    source:
-      uri: https://github.com/gregory-katsaros-rft/environment-automation.git
-      branch: develop
-      username: ((kv/rft/github-access-token))
-      password: x-oauth-basic
+  type: git
+  icon: github-circle
+  source:
+    uri: https://github.com/gregory-katsaros-rft/environment-automation.git
+    branch: develop
+    username: ((kv/rft/github-access-token))
+    password: x-oauth-basic
 
 - name: environment-request
   type: git
   icon: github-circle
   source:
     uri: https://github.com/gregory-katsaros-rft/environment-request.git
-    branch: demo
+    branch: master
     username: ((kv/rft/github-access-token))
     password: x-oauth-basic
 jobs:
@@ -22,12 +22,12 @@ jobs:
     plan: 
       - get: pipeline-source
         trigger: true
-      - set_pipeline: greg-automation-test
-        file: source-code/pipeline.yaml
+      - get: environment-request
+        trigger: true
+        file: pipeline-source/pipeline.yaml
       - task: dummy-task
         file: pipeline-source/tasks/dummy-task.yml
-  - name: job
-    public: true
+  - name: other-job
     plan:
       - get: environment-request
         trigger: true
