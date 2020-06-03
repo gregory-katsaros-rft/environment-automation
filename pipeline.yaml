@@ -1,10 +1,20 @@
 ---
 resources:
-- name: source-code
+- name: pipeline-source
+    type: git
+    icon: github-circle
+    source:
+      uri: https://github.com/gregory-katsaros-rft/environment-automation.git
+      branch: master
+      username: ((kv/rft/github-access-token))
+      password: x-oauth-basic
+
+- name: onboarding-source
   type: git
+  icon: github-circle
   source:
-    uri: https://github.com/gregory-katsaros-rft/environment-automation.git
-    branch: master
+    uri: https://github.com/gregory-katsaros-rft/environment-request.git
+    branch: demo
     username: ((kv/rft/github-access-token))
     password: x-oauth-basic
 jobs:
