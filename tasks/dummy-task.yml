@@ -6,5 +6,10 @@ image_resource:
   source: {repository: ubuntu}
 
 run:
-  path: uname
-  args: [-a]
+  path: sh
+  args:
+    - "-c"
+    - |
+      curl https://amers1.views.cp.icp2.mpp.reutest.com
+      curl https://amers1.ut1.cp.icp2.mpp.reutest.com/deployment
+      curl https://cloud-amers1a-appserver.int.thomsonreuters.com/deployment

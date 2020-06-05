@@ -1,4 +1,11 @@
 ---
+resource_types:
+- name: keyval
+  type: docker-image
+  source:
+    repository: swce/keyval-resource
+
+
 resources:
 - name: pipeline-source
   type: git
@@ -31,6 +38,8 @@ jobs:
       - task: dummy-task
         file: pipeline-source/tasks/dummy-task.yml
       - put: request-keyval
+        params:
+          file: request-keyval/keyval.properties
   - name: other-job
     plan:
       - get: request-keyval
